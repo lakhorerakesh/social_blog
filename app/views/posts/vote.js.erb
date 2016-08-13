@@ -1,0 +1,7 @@
+<% if @vote.save %>
+  $("#up_votes").html("<%= @post.up_votes %>")
+  $("#down_votes").html("<%= @post.down_votes %>")
+  $("#votes").html("<%= @post.total_votes %> votes")
+<% else %>
+  alert("You can't vote on this post");
+<% end %>

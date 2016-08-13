@@ -1,0 +1,19 @@
+<h1>User Friends </h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Picture</th>
+    <th colspan="15"></th>
+  </tr>
+  <% @facebook_friends.each do |f|  %>
+    <tr>
+      <td><%= f["id"] %></td>
+      <td><%= f["name"] %></td>
+      <td><%= image_tag f["picture"]["data"]["url"]%></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "Back", root_path%></p>

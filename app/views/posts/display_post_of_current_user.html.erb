@@ -1,0 +1,18 @@
+
+<h1>Post Of <%= current_user.name %></h1> 
+
+<p>
+ <%= image_tag @post.image_url(:thumb) if @post.image? %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @post.title %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= @post.description %>
+</p>
+
+<p><%= link_to "Back", show_my_posts_path %> |
+<%= link_to "Edit", edit_post_path %></p>

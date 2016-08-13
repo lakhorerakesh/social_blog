@@ -1,0 +1,27 @@
+<% provide(:title, 'Posts') %>
+<h1> Posts Of <%= current_user.name%> </h1>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Date</th>
+    <th>Category</th>
+    <th colspan="3"></th>
+  </tr>
+ 
+  <% @current_user_posts.each do |show_post| %>
+    <tr>
+      <td><%= show_post.title %></td>
+      <td><%= show_post.date %></td>
+      <td><%= show_post.category %></td>
+      <td><%= link_to 'show', display_post_path(show_post) %></td>
+      <td><%= link_to "Edit", edit_post_path(show_post) %></td>
+      <td><%= link_to "Destroy", destroy_post_path(show_post), 
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p> <%= link_to "Back", root_path %> </p>
+
+

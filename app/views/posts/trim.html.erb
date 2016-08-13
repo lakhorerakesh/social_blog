@@ -1,0 +1,16 @@
+<h1>Create Post</h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= image_tag @post.image_url(:large), id: "trimbox" %>
+    <h4>Preview</h4>
+    <div style="width:100px; height:100px; overflow:hidden">
+      <%= image_tag @post.image.url(:large), :id => "preview" %>
+    </div>
+    <%= form_for @post do |f| %>
+      <% %w[x y w h].each do |attribute| %>
+        <%= f.hidden_field "trim_#{attribute}" %>
+      <% end %>
+      <%= f.submit "Trim", class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

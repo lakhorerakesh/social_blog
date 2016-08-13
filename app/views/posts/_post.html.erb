@@ -1,0 +1,20 @@
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Date</th>
+    <th>Category</th>
+    <th colspan="7"></th>
+  </tr>
+ 
+  <% @posts.each do |post| %>
+    <tr>
+      <td><%= post.title %></td>
+      <td><%= post.date %></td>
+      <td><%= post.category %></td>
+      <td><%= pluralize(post.total_votes, "vote") %> </td>
+      <td><%= pluralize(post.up_votes, "upvote") %> </td>
+      <td><%= pluralize(post.down_votes, "downvote") %> </td>
+      <td><%= link_to 'Show', post_path(post) %></td>
+    </tr>
+  <% end %>
+</table>

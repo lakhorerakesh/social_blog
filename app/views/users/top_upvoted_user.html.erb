@@ -1,0 +1,14 @@
+<table>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= image_tag user.profile_url(:thumb) if user.profile.present? %> </td>
+      <td><%= user.name %> <br> 
+      <%= user.up_votes %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p> <%= link_to "Back", posts_path %> </p>
+
+  
+  

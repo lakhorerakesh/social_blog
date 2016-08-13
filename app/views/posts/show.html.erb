@@ -1,0 +1,39 @@
+<h1>Post Description</h1>
+<p>
+Submitted <%= time_ago_in_words(@post.created_at) %> 
+      by <%= @post.user.email %>
+
+</p>
+<p>
+  <strong>Title:</strong>
+  <%= @post.title %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= @post.description %>
+</p>
+
+<p>
+  <%= link_to vote_post_path(@post, vote: true), method: 'post', remote: true do %>
+    <span> Up </span> | <span id='up_votes'><%= @post.up_votes %></span>
+  <%end %>
+
+  <%= link_to vote_post_path(@post, vote: false), method: 'post', remote: true do %>
+    <span> Down </span> | <span id='down_votes'><%= @post.down_votes %></span>
+  <%end %>
+
+  <span id='votes'><%= @post.total_votes %> votes</span> |
+  <%= link_to "Back", posts_path %> 
+</p>
+
+
+
+    
+
+
+
+
+
+
+
+

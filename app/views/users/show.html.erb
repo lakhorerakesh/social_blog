@@ -1,0 +1,23 @@
+<% provide(:title, 'profile') %>
+<h1>User Profile</h1>
+
+<% if @user.provider.present? %>
+  <p><%= image_tag "http://graph.facebook.com/#{current_user.uid}/picture?type=normal" if @user.image.present? %></p>
+  <p> <h2><strong>UID:</strong><%= @user.uid if @user.uid.present? %></p>
+  <p><h2><strong>Provider:</strong><%= @user.provider %></p>
+  <p><h2><strong>Name:</strong><%= @user.name %></h2> </p>
+  <p><h2><strong>Email:</strong><%= @user.email %> </h2></p>
+
+<% else %>
+
+  <p><%= image_tag @user.profile_url(:thumb) if @user.profile.present? %></h2> </p>
+  <p><h2><strong>Name:</strong><%= @user.name %></h2> </p>
+  <p><h2><strong>Email:</strong><%= @user.email %> </h2></p>
+  
+<% end %>
+
+<p><%= link_to 'Edit Profile', edit_user_registration_path %> | <%= link_to 'Back', root_path %></p>
+</p>
+
+
+ 
