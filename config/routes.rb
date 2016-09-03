@@ -8,13 +8,15 @@ Rails.application.routes.draw do
               
   resources :posts do
     member { post :vote }
+    member { get :share_on_facebook}
+    member { post :share}
   end
 
   devise_scope :user do
     get '/fetch_user_friends', to: 'omniauth_callbacks#fetch_user_friends'
+    post '/share_user_friends_profile', to: 'omniauth_callbacks#share_user_friends_profile'
   end
-
-
+  
   get '/show', to: 'users#show'
   get '/top_upvoted_user', to: 'users#top_upvoted_user'
   get '/show_my_posts', to: 'posts#show_all_post_of_current_user'

@@ -1,0 +1,19 @@
+<% provide(:title, 'Share Post') %>
+<div class="modal-dialog">
+  <div class="modal-content">
+    <h1>Share on facebook</h1>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <p>Title</p>
+        <p><%= @post.title%></p></br>
+        <p>Description</p>
+        <p><%= @post.description%></p></br>
+        <p>Image</p>
+        <p><%= image_tag(@post.image_url(:thumb)) %></p></br>
+        <%= form_for(@post, url: share_post_path(@post), :html => {:method => :post}) do |f| %>
+          <%= f.submit "share on facebook" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

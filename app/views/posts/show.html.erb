@@ -5,6 +5,9 @@ Submitted <%= time_ago_in_words(@post.created_at) %>
 
 </p>
 <p>
+  <%= image_tag @post.image_url(:thumb) if @post.image.present? %>
+</p>
+<p>
   <strong>Title:</strong>
   <%= @post.title %>
 </p>
@@ -25,15 +28,6 @@ Submitted <%= time_ago_in_words(@post.created_at) %>
   <span id='votes'><%= @post.total_votes %> votes</span> |
   <%= link_to "Back", posts_path %> 
 </p>
-
-
-
-    
-
-
-
-
-
-
-
-
+<% if user_signed_in? && current_user.provider.present? %>
+  <p><%= link_to "share", share_on_facebook_post_path(@post) %></p>
+<% end %>

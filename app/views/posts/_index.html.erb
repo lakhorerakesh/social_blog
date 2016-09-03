@@ -1,8 +1,17 @@
-<% @posts.each do |post| %>
-  <h4> <p> <%= link_to post.title, post_path(post) %> </p></h4> 
-  <h4> <p> <%= post.description %> </p></h4>
-      <h6> <p> Submitted <%= time_ago_in_words(post.created_at) %> 
-      by <%= post.user.email %><p> </h6>
-
-      <p><%= pluralize(post.votes_count, "vote") %> up</p>
- <% end %>
+ <table>
+  <% @posts.each do |post| %>
+    <tr>
+      <td><div class="col-md-3 col-sm-2 col-xs-5 padding-left-zero">
+ <%= image_tag post.image_url(:thumb) if post.image? %>
+  </div></td>
+      <td>
+        <h4><p><%= link_to post.title, post_path(post) %> </p></h4>
+        <h6>
+          <p> Submitted <%= time_ago_in_words(post.created_at) %> by <%= post.user.email%><p> 
+        </h6>
+        <p> <%= post.category %> </p>
+        <p> <%= pluralize(post.up_votes, "up") %> | <%= pluralize(post.down_votes, "down") %> |<%= pluralize(post.total_votes, "vote") %> </p><br> 
+      </td>
+    </tr>
+  <% end %>
+</table>

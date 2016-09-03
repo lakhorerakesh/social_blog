@@ -13,6 +13,24 @@ class PostsController < ApplicationController
   def show
   end
 
+  def share_on_facebook
+    @post = Post.find(params[:id])
+  end
+
+  def share
+    @post = Post.find(params[:id])
+    @graph = Koala::Facebook::API.new(current_user.token)
+    @graph.put_wall_post("Sharing Post through rails app!", {
+      "name" => "#{@post.title}",
+      "link" => "http://localhost:3000/posts/#{@post.id}/share_on_facebook",
+      "caption" => "share post through koala gem",
+      "picture" => "http://localhost:3000/public/#{@post.image}/thumb.jpg",
+      "description" => "#{@post.description}"
+    })
+    flash[:success] = "post shared successfully"
+    redirect_to root_path
+  end
+
   def new
     @post = current_user.posts.build
   end

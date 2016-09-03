@@ -1,6 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import 'bootstrap/theme';
+@import "social-share-button";
 
 .alert-alert {
   @extend .alert-warning;
@@ -110,6 +111,18 @@ p {
   text-decoration: none;
 }
 
+#popup {
+    height: 50px;
+    width: 200px;
+    text-align: center;
+    vertical-align:middle;
+    background-color: cornflowerblue;
+    color: white;
+    display: none;
+    padding-top: 8px;
+    position: absolute;
+}
+
 /* forms */
 
 input, textarea,.uneditable-input {
@@ -160,3 +173,10 @@ input {
     color: #468847;
     text-align: center;
  }
+
+ .social-share-button-facebook {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url("/social/facebook.png") no-repeat;
+}

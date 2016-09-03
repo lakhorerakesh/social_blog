@@ -14,6 +14,7 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require bootstrap/dropdown
+//= require social-share-button
 //= require turbolinks
 //= require jquery.Jcrop
 //= require_tree .
