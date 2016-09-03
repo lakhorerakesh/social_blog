@@ -5,53 +5,47 @@
 </head>
 <body>
 <div class="container">
-  
   <!-- Modal -->
-  
-    <div class="modal-dialog">
-    
+  <div class="modal-dialog">
       <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Share Friends Profile</h4>
-        </div>
-        <div class="modal-body">
-          <p>
-            <% @result.each do |f|%>
-              <%= f[:name]%> : <%= image_tag f[:image]%><br>
-            <% end %>
-          </p>
-        </div>
-        <div class="modal-footer">
-          <input id="btn-share-Image" type="button" value="Preview"/>
-        </div>
-        <a id="btn-Convert-Html2Image" href="#">Download</a>
-        <br/>
-        <h3>Preview :</h3>
-          <div id="previewImage">
-        </div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Share Friends Profile</h4>
       </div>
+      <div class="modal-body">
+        <p>
+          <% @result.each do |f|%>
+            <%= f[:name]%> : <%= image_tag f[:image]%><br>
+          <% end %>
+        </p>
+      </div>
+      <div class="modal-footer">
+        <input id="btn-share-Image" type="button" value="Preview"/>
+      </div>
+      <a id="btn-Convert-Html2Image" href="#">Download</a>
+      <br/>
+      <h3>Preview :</h3>
+        <div id="previewImage">
+      </div>
+    </div>
   </div>
 </div>
-
-
 
 <script>
 $(document).ready(function(){
 
-  
 var element = $(".modal-content"); // global variable
 var getCanvas; // global variable
  
-    $("#btn-share-Image").on('click', function () {
-         html2canvas(element, {
-         onrendered: function (canvas) {
-                $("#previewImage").append(canvas);
-                getCanvas = canvas;
-             }
-         });
-    });
+  $("#btn-share-Image").on('click', function () {
+   html2canvas(element, {
+     onrendered: function (canvas) {
+        $("#previewImage").append(canvas);
+        getCanvas = canvas;
+      }
+   });
+  });
 
   $("#btn-Convert-Html2Image").on('click', function () {
     var imgageData = getCanvas.toDataURL("image/png");
@@ -61,7 +55,6 @@ var getCanvas; // global variable
   });
 
 });
-
 </script>
 </body>
 </html>

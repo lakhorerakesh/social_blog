@@ -2,7 +2,6 @@
 <p>
 Submitted <%= time_ago_in_words(@post.created_at) %> 
       by <%= @post.user.email %>
-
 </p>
 <p>
   <%= image_tag @post.image_url(:thumb) if @post.image.present? %>
