@@ -96,7 +96,7 @@ class PostsController < ApplicationController
   end
 
   def update_post?
-    @post.update(edit_post_params)
+    @post.update(post_params)
   end
 
   def image_exists?
@@ -113,9 +113,5 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :description, :date, :category, :image, :trim_x, :trim_y, :trim_w, :trim_h)
-  end
-
-  def edit_post_params
-    params.require(:post).permit(:title, :description, :image, :trim_x, :trim_y, :trim_w, :trim_h)
   end
 end

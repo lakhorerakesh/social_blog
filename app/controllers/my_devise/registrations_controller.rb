@@ -1,5 +1,6 @@
 class MyDevise::RegistrationsController < Devise::RegistrationsController
   
+  before_action :authenticate_user!, only: [:edit, :update]
   def create
     super
     session['devise.omniauth'] = nil unless @user.new_record?
