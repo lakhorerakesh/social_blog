@@ -42,57 +42,6 @@ textarea {
   @extend .alert-info;
 }
 
-
-table {
-  cell-padding: 60px;
-  border-collapse: separate;
-  border-spacing: 50px 0;
-  th {
-    text-align: left;
-    font-size: 2.5em;
-  }
-  td {
-      padding: 10px 0;
-  }
-}
-
-/* typography */
-
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1;
-}
-
-h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-h2 {
-  font-size: 1.2em;
-  letter-spacing: -1px;
-  margin-bottom: 30px;
-  text-align: left;
-  padding-left: 30px;
-  font-weight: normal;
-  color: #777;
-}
-
-h3 {
-  font-size: 1.2em;
-  letter-spacing: -1px;
-  margin-bottom: 10px;
-  text-align: left;
-  font-weight: normal;
-}
-
-p {
-  font-size: 1.1em;
-  line-height: 1.7em;
-  padding-left: 30px;
-}
-
 /* header */
 
 #logo {
@@ -179,4 +128,16 @@ input {
   width: 16px;
   height: 16px;
   background: url("/social/facebook.png") no-repeat;
+}
+
+.btn-facebook {
+  color: #fff;
+  background-color: #4C67A1;
+}
+.btn-facebook:hover {
+  color: #fff;
+  background-color: #405D9B;
+}
+.btn-facebook:focus {
+  color: #fff;
 }

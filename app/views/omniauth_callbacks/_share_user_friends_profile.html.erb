@@ -1,60 +1,53 @@
-<html>
-<head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="http://files.codepedia.info/uploads/iScripts/html2canvas.js"></script>
-</head>
-<body>
-<div class="container">
-  <!-- Modal -->
+
+<div class="modal fade" id="myModal1" role="dialog">
   <div class="modal-dialog">
-      <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Share Friends Profile</h4>
+        <h4 class="modal-title">Share on facebook</h4>
       </div>
-      <div class="modal-body">
-        <p>
+      <div id="wrp" style="border: 10px solid;padding-bottom: 157px;">
+        <div class="modal-body">
           <% @result.each do |f|%>
-            <%= f[:name]%> : <%= image_tag f[:image]%><br>
+            <div style="float: left;width: 30%;">
+              <% img = open(f[:image])%>
+              <% image_data = Base64.encode64(img.read) %>
+              <img src="data:image/jpeg;base64,<%=image_data %>" >
+              <h4><%= f[:name]%></h4>
+            </div>
           <% end %>
-        </p>
+        </div>
       </div>
       <div class="modal-footer">
-        <input id="btn-share-Image" type="button" value="Preview"/>
+        <%= form_tag("/share_friends_image", method: "post") do %>
+          <%= hidden_field_tag "result", @result  %>
+          <%= hidden_field_tag "image_data", value: ""%>
+          <%= submit_tag "share on Facebook", class: "btn btn-facebook btn-lg", style: "width: 46%;" %>
+        <% end %>
+        <input id="gimg" type="button" value="Preview" class="btn btn-primary btn-lg" style="width: 46%;"/>
       </div>
-      <a id="btn-Convert-Html2Image" href="#">Download</a>
       <br/>
-      <h3>Preview :</h3>
-        <div id="previewImage">
+      <div id="img" style="display:none;">
+        <img src="" id="newimg" />
       </div>
     </div>
   </div>
 </div>
 
 <script>
-$(document).ready(function(){
-
-var element = $(".modal-content"); // global variable
-var getCanvas; // global variable
- 
-  $("#btn-share-Image").on('click', function () {
-   html2canvas(element, {
-     onrendered: function (canvas) {
-        $("#previewImage").append(canvas);
-        getCanvas = canvas;
-      }
-   });
+  $(function(){
+    $("#gimg").click(function(){
+       html2canvas($("#wrp"), {
+        onrendered: function(canvas) {
+           var imgsrc = canvas.toDataURL("image/png");
+           console.log(imgsrc);
+           $("#newimg").attr('src',imgsrc);
+           $("#img").show();
+           $("#image_data").val(imgsrc);
+          }
+       });
+    });  
   });
-
-  $("#btn-Convert-Html2Image").on('click', function () {
-    var imgageData = getCanvas.toDataURL("image/png");
-    // Now browser starts downloading it instead of just showing it
-    var newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream");
-    $("#btn-Convert-Html2Image").attr("download", "your_pic_name.png").attr("href", newData);
-  });
-
-});
 </script>
-</body>
-</html>

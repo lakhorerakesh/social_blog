@@ -1,4 +1,4 @@
-<% if @vote.save %>
+<% if @errors.blank? %>
   $("#up_votes").html("<%= @post.up_votes %>")
   $("#down_votes").html("<%= @post.down_votes %>")
   $("#votes").html("<%= @post.total_votes %> votes")

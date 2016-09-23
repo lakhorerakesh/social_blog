@@ -1,15 +1,19 @@
 Rails.application.routes.draw do
   
+  mount Ckeditor::Engine => '/ckeditor'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'welcome#index'
+  get 'post/:id/vote' => 'posts#vote', as: :vote
+  post 'share_friends_image' => 'users#share_friends_image', as: :share_friends_image
   devise_for :users, 
               :controllers => {:registrations => "my_devise/registrations",
               :omniauth_callbacks => "omniauth_callbacks"}
               
   resources :posts do
-    member { post :vote }
-    member { get :share_on_facebook}
-    member { post :share}
+    member do
+      get :share_on_facebook
+      post :share
+    end
   end
 
   devise_scope :user do

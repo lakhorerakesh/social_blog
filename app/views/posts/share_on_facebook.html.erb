@@ -11,7 +11,8 @@
         <p>Image</p>
         <p><%= image_tag(@post.image_url(:thumb)) %></p></br>
         <%= form_for(@post, url: share_post_path(@post), :html => {:method => :post}) do |f| %>
-          <%= f.submit "share on facebook" %>
+          <%= f.submit "share on facebook", class: "btn btn-success" %>
+          <br><br>
         <% end %>
       </div>
     </div>

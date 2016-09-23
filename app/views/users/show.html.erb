@@ -1,24 +1,72 @@
-<% provide(:title, 'profile') %>
-<h1>User Profile</h1>
-
-<% if @user.provider.present? %>
-  <p><%= image_tag "http://graph.facebook.com/#{current_user.uid}/picture?type=normal" if @user.image.present? %></p>
-  <p> <h2><strong>UID:</strong><%= @user.uid if @user.uid.present? %></p>
-  <p><h2><strong>Provider:</strong><%= @user.provider %></p>
-  <p><h2><strong>Name:</strong><%= @user.name %></h2> </p>
-  <p><h2><strong>Email:</strong><%= @user.email %> </h2></p>
-  <p><h2><%= link_to 'show friends', fetch_user_friends_path %></h2></p>
-
-<% else %>
-
-  <p><%= image_tag @user.profile_url(:thumb) if @user.profile.present? %></h2> </p>
-  <p><h2><strong>Name:</strong><%= @user.name %></h2> </p>
-  <p><h2><strong>Email:</strong><%= @user.email %> </h2></p>
-  
-<% end %>
-
-<p><%= link_to 'Edit Profile', edit_user_registration_path %> | <%= link_to 'Back', root_path %></p>
-</p>
-
-
+<div class="container">
+  <div class="row">
+    <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
+      <%= link_to 'Edit Profile', edit_user_registration_path %>
+     <br>
+      <p class=" text-info"><%= @user.created_at %></p>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= @user.name %></h3>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-3 col-lg-3 " align="center">
+              <% if @user.provider.present? %>
+                <%= image_tag "http://graph.facebook.com/#{current_user.uid}/picture?type=normal", class: "img-circle img-responsive" if @user.image.present? %>
+              <% else %>
+                <%= image_tag @user.profile_url(:thumb), class: "img-circle img-responsive" if @user.profile.present? %>
+              <% end %>
+            </div>
+            <div class=" col-md-9 col-lg-9 "> 
+              <table class="table table-user-information">
+                <tbody>
+                  <tr>
+                    <td>Name:</td>
+                    <td><%= @user.name%></td>
+                  </tr>
+                  <tr>
+                    <td>Email:</td>
+                    <td><a href="mailto:info@support.com"><%= @user.email%></a></td>
+                  </tr>
+                  <% if @user.provider.present? %>
+                    <tr>
+                      <td>UID:</td>
+                      <td><%= @user.uid if @user.uid.present? %></td>
+                    </tr>
+                    <tr>
+                      <td>Provider:</td>
+                      <td><%= @user.provider %></td>
+                    </tr>
+                  <% end %>
+                  <tr>
+                    <td><% @user.name %>Total Posts:</td>
+                    <td><%= link_to "#{@user.posts.count}", show_my_posts_path%></td>
+                  </tr>
+                  </tr>
+                    <tr>
+                    <td>Home Address</td>
+                    <td>Metro Manila,Philippines</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a href="<%= show_my_posts_path%>" class="btn btn-primary">My Post</a>
+              <% if @user.provider.present? %>
+                <a href="<%= fetch_user_friends_path%>" class="btn btn-primary">Show  Your Friends</a>
+              <% end %>
+            </div>
+          </div>
+        </div>
+         <div class="panel-footer">
+            <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+            <span class="pull-right">
+              <a href="<%= edit_user_registration_path%>" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+              <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+            </span>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
  

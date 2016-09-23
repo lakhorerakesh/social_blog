@@ -4,6 +4,7 @@ class Post < ApplicationRecord
   validates :user_id, presence: true
   validates :title, presence: true,
                     length: { minimum: 5 }
+  validates :description, :date, :category, presence: true
                     
   mount_uploader :image, ImageUploader
 
@@ -28,5 +29,9 @@ class Post < ApplicationRecord
   
   def down_votes
     self.votes.where(vote: false).size  
+  end
+
+  def self.category_list
+    [ 'Social', 'Politics', 'Sports', 'Entertainment', 'Fashion','Business','Technology' ]
   end
 end

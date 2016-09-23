@@ -14,5 +14,7 @@
  *= require_tree .
  *= require jquery.Jcrop
  *= require social-share-button
+ *= require bootstrap-datepicker
+  *= require social-share-button
  *= require_self
  */

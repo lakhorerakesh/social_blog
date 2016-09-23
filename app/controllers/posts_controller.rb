@@ -15,6 +15,7 @@ class PostsController < ApplicationController
 
   def share_on_facebook
     @post = Post.find(params[:id])
+    redirect_to post_path(@post)
   end
 
   def share
@@ -24,7 +25,7 @@ class PostsController < ApplicationController
       "name" => "#{@post.title}",
       "link" => "http://localhost:3000/posts/#{@post.id}/share_on_facebook",
       "caption" => "share post through koala gem",
-      "picture" => "http://localhost:3000/public/#{@post.image}/thumb.jpg",
+      "picture" => "http://dhhs.michigan.gov/course301/common/images/post-test-intro.jpg",
       "description" => "#{@post.description}"
     })
     flash[:success] = "post shared successfully"
@@ -80,11 +81,15 @@ class PostsController < ApplicationController
   end
 
   def vote
-    @vote = @post.votes.new :user_id => current_user.id, :vote => params[:vote]
-    if @vote.save
-      respond_to do |format|
-        format.js
-      end
+    vote = Vote.where(post_id: @post.id, user_id: current_user.id).first
+    if vote.present?
+      @vote = vote.update(:vote => params[:vote])
+    else
+      @vote = @post.votes.new(:user_id => current_user.id, :vote => params[:vote])
+      @vote.save
+    end
+    respond_to do |format|
+      format.js
     end
   end 
 

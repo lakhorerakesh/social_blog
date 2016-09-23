@@ -34,8 +34,11 @@ gem 'bootstrap-sass'
 gem 'jquery-turbolinks'
 
 gem 'rmagick'
-gem 'carrierwave'
+gem 'carrierwave_direct'
 gem 'koala'
+gem 'bootstrap-datepicker-rails'
+gem 'ckeditor'
+gem 'figaro'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
