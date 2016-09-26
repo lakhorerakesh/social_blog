@@ -1,4 +1,3 @@
-require 'dropbox_sdk'
 require 'base64'
 class UsersController < ApplicationController
   def show

@@ -21,10 +21,10 @@
         </div>
       </div>
       <div class="modal-footer">
-        <%= form_tag("/share_friends_image", method: "post") do %>
+        <%= form_tag("/share_friends_image", method: "post", :class =>"form") do %>
           <%= hidden_field_tag "result", @result  %>
           <%= hidden_field_tag "image_data", value: ""%>
-          <%= submit_tag "share on Facebook", class: "btn btn-facebook btn-lg", style: "width: 46%;" %>
+          <%= submit_tag "share on Facebook", class: "btn btn-facebook btn-lg", style: "width: 120%;" %>
         <% end %>
         <input id="gimg" type="button" value="Preview" class="btn btn-primary btn-lg" style="width: 46%;"/>
       </div>
@@ -46,8 +46,16 @@
            $("#newimg").attr('src',imgsrc);
            $("#img").show();
            $("#image_data").val(imgsrc);
+           $(".form").show();
           }
        });
     });  
   });
 </script>
+
+<style>
+  .form {
+    float: left;
+    display:none;
+  }
+</style>
